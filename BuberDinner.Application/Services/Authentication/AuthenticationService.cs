@@ -17,18 +17,18 @@ public class AuthenticationService : IAuthenticationService
         _userRepository = userRepository;
     }
 
-    public AuthenticationResult Login(string email, string password)
+    public ErrorOr<AuthenticationResult> Login(string email, string password)
     {
         // 1. Validate the user exists
         if (_userRepository.GetUserByEmail(email) is not User user)
         {
-            throw new Exception("User with the given email does not exists.");
+            return Errors.Authentication.InvalidCredentials;
         }
 
         // 2. Validate the password is correct
         if (user.Password != password)
         {
-            throw new Exception("Invalid password");
+            return Errors.Authentication.InvalidCredentials;
         }
 
 
