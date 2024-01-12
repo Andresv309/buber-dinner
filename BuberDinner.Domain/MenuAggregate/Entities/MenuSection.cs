@@ -6,8 +6,8 @@ namespace BuberDinner.Domain.MenuAggregate.Entities;
 public sealed class MenuSection : Entity<MenuSectionId>
 {
     private readonly List<MenuItem> _items = new();
-    public string Name { get; }
-    public string Description { get; }
+    public string Name { get; private set; }
+    public string Description { get; private set; }
     public IReadOnlyList<MenuItem> Items => _items.AsReadOnly();
 
     private MenuSection(MenuSectionId menuSectionId, string name, string description, List<MenuItem> items)
@@ -31,4 +31,11 @@ public sealed class MenuSection : Entity<MenuSectionId>
             items
         );
     }
+
+    #pragma warning disable CS8618
+    private MenuSection()
+    {
+        // Required by EF Core
+    }   
+    #pragma warning restore CS8618
 }

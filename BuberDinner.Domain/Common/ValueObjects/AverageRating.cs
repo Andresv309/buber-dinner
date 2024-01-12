@@ -5,7 +5,7 @@ namespace BuberDinner.Domain.Common.ValueObjects;
 public sealed class AverageRating : ValueObject
 {
     public double Value { get; private set; }
-    public double NumRatings { get; private set; }
+    public int NumRatings { get; private set; }
 
     private AverageRating(double value, int numRatings)
     {
@@ -31,5 +31,10 @@ public sealed class AverageRating : ValueObject
     public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
+    }
+
+    private AverageRating()
+    {
+        // Required by EF Core
     }
 }

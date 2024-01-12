@@ -16,6 +16,11 @@ public sealed class MenuId : ValueObject
         return new (Guid.NewGuid());
     }
 
+    public static MenuId Create(Guid value)
+    {
+        return new MenuId(value);
+    }
+
     public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;

@@ -4,7 +4,7 @@ namespace BuberDinner.Domain.HostAggregate.ValueObjects;
 
 public sealed class HostId : ValueObject
 {
-    public string Value { get; }
+    public string Value { get; private set; }
 
     private HostId(string value)
     {
